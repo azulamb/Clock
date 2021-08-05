@@ -1,0 +1,12 @@
+{
+	"name": "Clock",
+	"short_name": "Clock",
+	"description": "PWA clock app",
+	"icons": [
+		{ "src": "icon-192.png", "sizes": "any", "type": "image/svg+xml" }
+	],
+	"start_url": "https://azulamb.github.io/Clock/",
+	"display": "fullscreen",
+	"theme_color": "#fff",
+	"background_color": "#000"
+}
