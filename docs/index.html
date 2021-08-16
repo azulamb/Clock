@@ -11,6 +11,7 @@ html { padding: 0; margin: 0; width: 100%; height: 100%; }
 body { padding: 0; margin: 0; width: 100%; height: 100%; background: var( --back );}
 svg { display: block; object-fit: contain; width: 100%; height: 100%; }
 path { fill: var(--main); }
+path.half { opacity: 0.5; }
 path.hide { fill: transparent; }
 </style>
 <script>
@@ -33,6 +34,16 @@ class DS
 		this.d[ 5 ].classList[ 0 <= [ 0, 1, 3, 4, 5, 6, 7, 8, 9 ].indexOf( n ) ? 'remove' : 'add' ]( 'hide' );
 		this.d[ 6 ].classList[ 0 <= [ 0, 2, 3, 5, 6, 8, 9 ].indexOf( n ) ? 'remove' : 'add' ]( 'hide' );
 	}
+	half( on )
+	{
+		this.d[ 0 ].classList[ on ? 'add' : 'remove' ]( 'half' );
+		this.d[ 1 ].classList[ on ? 'add' : 'remove' ]( 'half' );
+		this.d[ 2 ].classList[ on ? 'add' : 'remove' ]( 'half' );
+		this.d[ 3 ].classList[ on ? 'add' : 'remove' ]( 'half' );
+		this.d[ 4 ].classList[ on ? 'add' : 'remove' ]( 'half' );
+		this.d[ 5 ].classList[ on ? 'add' : 'remove' ]( 'half' );
+		this.d[ 6 ].classList[ on ? 'add' : 'remove' ]( 'half' );
+	}
 }
 window.addEventListener('DOMContentLoaded', () =>
 {
@@ -42,9 +53,17 @@ window.addEventListener('DOMContentLoaded', () =>
 		const date = new Date();
 		const h = date.getHours();
 		const m = date.getMinutes();
-		ds[ 0 ].show( Math.floor( h / 10 ) );
+		( ( n ) =>
+		{
+			ds[ 0 ].show( n );
+			ds[ 0 ].half( n === 0 );
+		} )( Math.floor( h / 10 ) );
 		ds[ 1 ].show( h % 10 );
-		ds[ 2 ].show( Math.floor( m / 10 ) );
+		( ( n ) =>
+		{
+			ds[ 2 ].show( n );
+			ds[ 2 ].half( n === 0 );
+		} )( Math.floor( m / 10 ) );
 		ds[ 3 ].show( m % 10 );
 	}, 1000 );
 } );
